@@ -12,32 +12,24 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them. For now, maybe copy in how to install python and python3 using apt.
+Here is the commands to  install python and python3 using apt on Debian based Linux systems.
 
 ```
-sudo apt-get install python   # Debian install for Python 2.x
-sudo apt-get install python3  # Debian install for Python 3.x
+sudo apt-get install python -y              # Debian install for Python 2.x
+sudo apt-get install python3 -y             # Debian install for Python 3.x
 ```
 
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running. Eventually, maybe we could list Python package requirements here. You can remove this section for now, or make a note to yourself to fill it out later.
+A step by step series of examples that tell you have to get a development env running. Eventually, maybe we could list Python package requirements here. Since I'm not entirely sure what to put here, this is a note to myself to fill it out later.
 
 ```
 Give the example
 ```
 
-And repeat other install steps...
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
 ## Running the tests
 
-(Explain how to run the automated tests for this system. We currently don't have any, so just make a note that they are none at this time.)
+(This will be where I have instructions on how to run automated tests for this system. Since I  currently don't have any, this is just a note that they are none at this time.)
 
 ## Deployment
 
