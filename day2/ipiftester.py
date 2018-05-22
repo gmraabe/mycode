@@ -15,4 +15,19 @@
 #    - Make the above question loop-- and keep adding IP addresses to the list.
 #    - Program ends when IP address "Q" or 'q' is entered.
 
+# Define variables
+ip_addr = ''
+ip_addr_list = []
 
+while ip_addr != 'q':     # Start a while loop
+    ip_addr = input("Please enter an IP address: ")    # Get user input
+
+    if ip_addr == '10.10.3.1':   # Check to see if input equals gateway address
+        print('This is the IP address for the gateway: Please do not use this IP address')
+    elif ip_addr == '10.20.5.2':   # Check to see if input equals DNS address
+        print('This is the IP address for the DNS server: Please do not use this IP address')
+    elif ip_addr == 'q' or ip_addr == 'Q':   # Check to see if input equals 'q' or 'Q' 
+        print(ip_addr_list)    # Print out the list of IP addresses
+        exit()      # exit the script
+    else:
+        ip_addr_list.append(ip_addr)   # Add the IP address to the List
