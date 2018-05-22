@@ -1,0 +1,37 @@
+#!/usr/bin/env python3
+# myflix.py
+# Micah Raabe
+
+# Lab 13 - Writing your own if-logic script
+#   Part 2 - Write custom script
+
+print('Please select a number to get a quick snopsis of a book or movie series')
+print('    1 - Harry Potter')
+print('    2 - The Hobbit')
+print('    3 - Chronicles of Narnia')
+print('    4 - Indiana Jones')
+print()
+
+booksel = int(input())
+
+print()
+if booksel == 1:
+    print('Harry Potter is the most miserable, lonely boy you can imagine. He’s shunned by his relatives, the Dursley’s, that have raised him since he was an infant. He’s forced to live in the cupboard under the stairs, forced to wear his cousin Dudley’s hand-me-down clothes, and forced to go to his neighbour’s house when the rest of the family is doing something fun. Yes, he’s just about as miserable as you can get.\n')
+    print('Harry’s world gets turned upside down on his 11th birthday, however. A giant, Hagrid, informs Harry that he’s really a wizard, and will soon be attending Hogwarts School of Witchcraft and Wizardry. Harry also learns that, in the wizarding world, he’s a hero. When he was an infant, the evil Lord Voldemort killed his parents and then tried to kill Harry too. What’s so amazing to everyone is that Harry survived, and allegedly destroyed Voldemort in the process.\n')
+    print('When Harry hears all this, he doesn’t know what to think. However, everything Hagrid tells him turns out to be true, and with a joyful heart Harry starts wizarding school in September. He quickly becomes best friends with a boy named Ron Weasley, and before they even make it to Christmas, they break tons of school rules when they attack a troll and prevent it from killing fellow student Hermione Granger. After the troll incident, the three become inseparable, and Harry is amazed to have found such great friends. He is constantly busy trying to stay on top of the mounds of homework, as well as participating in weekly Quidditch practices. Quidditch is a popular sport among wizards and Harry is the youngest Quidditch player in over a century. It\'s also a game Harry loves more than anything else at school.\n')
+    print('As the year progresses, the three friends set out to solve the mystery of the gigantic three-headed dog that is guarding something in a deserted corridor in the school. They figure out that a very valuable object, the Sorcerer’s Stone, is being hidden in the school, although they don’t know why. When one of the professors starts acting as if he’s trying to steal it, they quickly take action to circumvent the theft.\n')
+    print('Things come to a head when they sneak past the vicious, three-headed dog and go down into the bowels of the school, determined to save the stone. Ron and Hermione help Harry get through the challenges set forth to stop the thief, but Harry must go on alone to battle the professor. When he finally gets to the last room, however, he’s astonished to find someone else entirely.\n')
+    print('Harry is forced to do battle with the wizard that tried to kill him so many years before, Lord Voldemort. He’s able to save the Sorcerer’s Stone, although he’s almost killed in process. The school headmaster, Dumbledore, arrives just in time to save Harry.\n')
+    print('The school year ends spectacularly. Harry, Ron, and Hermione are honored for their service to the school, and Harry leaves to go back to the Dursley’s for the summer feeling as if he’s finally found a place where he really belongs.\n')
+elif booksel == 2:
+    print('The Hobbit is a novel by J.R.R Tolkien,author of Lord Of The Rings. The novel is about the journey of a hobbit called Bilbo Baggins, along with Gandalf The Gray, and twelve dwarves. The purpose for their journey was to reach the Misty Mountain and take back Thorin\'s treasures from the dragon, Smaug. Bilbo was to act as their "burglar", and also to increase their number, since they were thirteen travelers without him (which was, according to Gandalf, bad luck). It also tells the story of how the One Ring of Power passed into the possesion of Bilbo.\n')
+elif booksel == 3:
+    print('The Chronicles of Narnia is a series of seven fantasy novels by C. S. Lewis. It is considered a classic of children\'s literature and is the author\'s best-known work, having sold over 100 million copies in 47 languages.[1][2] Written by Lewis, illustrated by Pauline Baynes, and originally published in London between 1950 and 1956, The Chronicles of Narnia has been adapted several times, complete or in part, for radio, television, the stage, and film.\n')
+    print('Set in the fictional realm of Narnia, a fantasy world of magic, mythical beasts, and talking animals, the series narrates the adventures of various children who play central roles in the unfolding history of that world. Except in The Horse and His Boy, the protagonists are all children from the real world, magically transported to Narnia, where they are called upon by the lion Aslan to protect Narnia from evil and restore the throne to its rightful line. The books span the entire history of Narnia, from its creation in The Magician\'s Nephew to its eventual destruction in The Last Battle.\n')
+    print('Inspiration for the series was taken from multiple sources; in addition to adapting numerous traditional Christian themes, Lewis freely borrowed characters and ideas from Greek and Roman mythology as well as from traditional British and Irish fairy tales.\n')
+    print('The books have profoundly influenced adult and children\'s fantasy literature since World War II. Lewis\'s exploration of themes not usually present in children\'s literature, such as religion, as well as the books perceived treatment of issues including race and gender, has caused some controversy.\n')
+elif booksel == 4:
+    print('Indiana Jones is an American media franchise based on the adventures of Dr. Henry Walton "Indiana" Jones, Jr., a fictional professor of archaeology. It began in 1981 with the film Raiders of the Lost Ark. A prequel, Indiana Jones and the Temple of Doom, followed in 1984, and a sequel, Indiana Jones and the Last Crusade, was released in 1989. A fourth film, Indiana Jones and the Kingdom of the Crystal Skull, was released in 2008, and was the last in the series to be distributed by Paramount Pictures. The series was created by George Lucas, and its films are directed by Steven Spielberg and star Harrison Ford as the title character. The Walt Disney Company has owned the Indiana Jones intellectual property since its acquisition of Lucasfilm, the series\' production company, in 2012.[1] A fifth film is planned for release on July 10, 2020, with both Spielberg and Ford returning.[2]\n')
+    print('The franchise expanded to television in 1992 with the release of The Young Indiana Jones Chronicles, a series featuring adventures the character had as a child as he traveled around the world with his father. Marvel Comics began publishing The Further Adventures of Indiana Jones in 1983, and Dark Horse Comics earned the comic book rights to the character in 1991. Novelizations of the films have been published, as well as many novels with original adventures, including a series of German novels by Wolfgang Hohlbein, twelve novels set before the films published by Bantam Books, and a series set during the character\'s childhood inspired by the television show. Numerous Indiana Jones video games have been released since 1982.\n')
+else:
+    print('Invalid selection\n')
