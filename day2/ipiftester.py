@@ -19,7 +19,7 @@
 ip_addr = ''
 ip_addr_list = []
 
-while ip_addr != 'q':     # Start a while loop
+while 'true':     # Start a while loop
     ip_addr = input("Please enter an IP address: ")    # Get user input
 
     if ip_addr == '10.10.3.1':   # Check to see if input equals gateway address
