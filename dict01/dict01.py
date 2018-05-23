@@ -14,11 +14,31 @@ print( switch['ip'] )
 
 ## request a 'fake' key with .get() method
 print( "First test - .get()" )
-switch.get('lynx')
+print(switch.get('lynx'))
 
 print( "Second test - .get()" )
-switch.get('lynx', "THE KEY IS IN ANOTHER CASTLE!")
+print(switch.get('lynx', "THE KEY IS IN ANOTHER CASTLE!"))
 
 print( "Third test - .get()" )
-switch.get('version')
+print(switch.get('version'))
 
+print( "Forth test - .keys()" )
+print(switch.keys())
+
+print( "Fifth test - .values()" )
+print(switch.values())
+
+print( "Sixth test - .pop()" )
+print(switch.pop('version'))
+print(switch.keys())
+print(switch.values())
+
+print( "Seventh test - ADD a new value" )
+switch['adminlogin'] = 'kar1089'
+print(switch.keys())
+print(switch.values())
+
+print( "Eighth test - ADD a new value" )
+switch['password'] = 'qwerty'
+print(switch.keys())
+print(switch.values())
