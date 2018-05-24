@@ -2,18 +2,19 @@
 # usopen.py
 # Micah Raabe
 
-## USOpen Tournament Switch Checker -- 2018.05.01
+## USOpen Tournament Switch Checker -- 2018.05.24
 ''' usopen.py
 This script is being designed to provide the following automated tasks:
 - ping check the router (import os)
 - login check the router (import netmiko)
 - determine if interfaces in use are up (import netmiko)
-- Apply new configuration (import netmiko) # not yet built
+- Apply new configuration (import netmiko)
 
 The IPs and device type should be made available via an Excel spreadsheet
 
 '''
 import os
+import bootstrapper
 
 ## pyexcel and pyexce-xls are required for our program to execute
 # python3 -m pip install --user pyexcel
@@ -42,12 +43,11 @@ def ping_router(hostname):
     else:
         return False
 
-
 ## Check interfaces - Issue "show ip init brief"
 def interface_check(dev_type, dev_ip, dev_un, dev_pw):
     try:
         open_connection = ConnectHandler(device_type=dev_type, ip=dev_ip, username=dev_un, password=dev_pw)
-        my_command = open_connection.send_command("show ip int brief")       
+        my_command = open_connection.send_command("show ip int brief")
     except:
         my_command = "** ISSUING COMMAND FAILED **"
     finally:
@@ -58,7 +58,7 @@ def interface_check(dev_type, dev_ip, dev_un, dev_pw):
 def login_router(dev_type, dev_ip, dev_un, dev_pw):
     try:
         open_connection = ConnectHandler(device_type=dev_type, ip=dev_ip, username=dev_un, password=dev_pw)
-        return True        
+        return True
     except:
         return False
 
@@ -91,6 +91,18 @@ def main():
     print("\n***** BEGIN SHOW IP INT BRIEF *****")
     for x in entry.keys():
         print("\n" + interface_check(str(entry[x]), x, "admin", "alta3"))
+
+    ## Determine if new config should be applied && if so apply new config
+    print("\n***** NEW BOOTSTRAPPING CHECK *****")
+    ynchk = input("\nWould you like to apply a new configuration? y/N ")
+    if (ynchk.lower() == "y") or (ynchk.lower() == "yes"):  # if user input yes or y
+        conf_loc = str(input("\nWhere is the location of the new config file? "))
+        conf_ip = str(input("\nWhat is the IP address of the device to be configured? "))
+
+        if bootstrapper.bootstrapper(entry[conf_ip], conf_ip, "admin", "alta3", conf_loc):
+            print("\nNew configuration applied!")
+        else:
+            print("\nProblem in applying new configuration!")
 
 ## Call main()
 main()
