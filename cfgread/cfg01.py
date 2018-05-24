@@ -1,4 +1,4 @@
-#/usr/bin/env python3
+#!/usr/bin/env python3
 # cfg01.py
 # Micah Raabe
 
@@ -7,13 +7,18 @@ configfile = open('vlanconfig.cfg', 'r')
 
 ## display file to the screen - .read()
 print(configfile.read())
+configfile.close()
 
 ## make a list of file lines - .readlines()
-print(config.readlines())
-configlist = config.readlines()
+configfile = open('vlanconfig.cfg', 'r')
+print(configfile.readlines())
+configfile.close()
 
+print()
+configfile = open('vlanconfig.cfg', 'r')
+configlist = configfile.readlines()
 for x in configlist:
-    print(x)
+    print(x.strip())
 
 ## Always close your file
 configfile.close()
