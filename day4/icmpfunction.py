@@ -11,3 +11,8 @@ import subprocess
 # both values passed to function icmpsender(cnumber, ipaddress)
 # function issues command ping -c cnumber ipaddress
 #                     ex - ping -c 10 8.8.8.8
+
+cnumber = input('How many icmp packets would you like to send? ')
+ipaddress = input('What is the IP address? ')
+
+subprocess.call(["ping", "-c", cnumber, ipaddress])
