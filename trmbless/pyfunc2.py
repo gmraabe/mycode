@@ -47,7 +47,6 @@ yellow_wp("I want this to print in YELLOW")
 top_right("I want this in the top right!")
 
 orders = prompt("Press enter to continue")
-input() # Wait until user presses enter before continuing
 
 print(t.clear())
 
