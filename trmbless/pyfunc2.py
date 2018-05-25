@@ -58,5 +58,8 @@ while orders != 'q':
     if orders[:3]=='mtr':
       with t.location(0,3):
          os.system(orders)
+    if orders[:2]=='df':
+      with t.location(0,int(t.height/2.0)):
+         os.system(orders)
 
 yellow_wp("Thanks for all the fish")
