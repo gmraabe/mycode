@@ -22,6 +22,9 @@ helmetson = json.loads(helmet.decode('utf-8'))
 print("Converted python data")
 print(helmetson)
 
-print("\n\nPeople in Space: ", helmetson['number'])
+print("\n\nPeople in Space: ", helmetson['number'])  # print the number of people in space
 people = helmetson['people']
-print(people)
+#print(people)
+
+for num_of_people in range(len(people)):             # loop through the list and print the name and craft
+    print(people[num_of_people]['name'] + ' on the ' + people[num_of_people]['craft'])
