@@ -1,0 +1,1 @@
+{"Jeep": "street", "NV3500": "driveway", "MacBook": "desk", "HP 8620": "bedroom"}
