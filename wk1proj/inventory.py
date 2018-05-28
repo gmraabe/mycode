@@ -38,15 +38,15 @@ def search_entry(search_str):    # function for searching inventory
             print('Enter 1 to delete ' + search_str + ' or 2 to return to Main Menu')
             selection = input()                        # get input from user
             if selection == '1':                         # check if user wishes to delete the found search item
-                myDict.pop(search_str)                         # remove search string from dictionary
-                with open(filename, 'w') as myfile:            # open file with implied close (with)
-                    myfile.write(json.dumps(myDict))             # write dictionary to file
-                print(search_str + ' is deleted')
-                input('Press enter to continue')
+                myDict.pop(search_str)                     # remove search string from dictionary
+                with open(filename, 'w') as myfile:        # open file with implied close (with)
+                    myfile.write(json.dumps(myDict))         # write dictionary to file
+                print(search_str + ' is deleted')          # print confirmation message
+                input('Press enter to continue')           # wait for user before continuing
                 break
-            elif selection == '2':
+            elif selection == '2':                     # if user wishes to exit to main menu
                 break
-            else:
+            else:                                      # if anything else then loop
                 print('Invalid selection')
 
 def print_entrys():               # function for printing the inventory
@@ -54,33 +54,33 @@ def print_entrys():               # function for printing the inventory
     print('----\t\t--------')
     with open(filename, 'r') as myfile:            # open file with implied close (with)
         myDict = json.loads(myfile.read())           # read file into a dictionary
-    for itm, loc in myDict.items():
-        print(itm + '\t\t' + loc)
-    input('\nPress enter to continue')
+    for itm, loc in myDict.items():                # loop through dictionary
+        print(itm + '\t\t' + loc)                    # print dictionary item
+    input('\nPress enter to continue')             # wait for user before continuing
 
 while True:
-    print(t.clear())
+    print(t.clear())                               # clear screen
     print('\nInventory Tracker 1.0\n')
 
-    print('Main Menu:\n')
+    print('Main Menu:\n')                          # print main menu
     print('  1 - Create or modify an entry')
     print('  2 - Search for an entry')
     print('  3 - Print inventory')
     print('  q - Quit')
 
-    menu_selection = input('\nPlease enter a selection: ')
+    menu_selection = input('\nPlease enter a selection: ')  # get user input
 
-    if menu_selection.lower() == 'q':
+    if menu_selection.lower() == 'q':              # if user enters 'q' then quit
         break
-    elif menu_selection == '1':
+    elif menu_selection == '1':                    # if user wishes to add/modify an entry
         new_item = input('Please enter an item: ')
         new_location = input('Please enter the location: ')
-        new_entry(new_item, new_location)
-    elif menu_selection == '2':
-        search_input = input('Search for: ')
-        search_entry(search_input)
-    elif menu_selection == '3':
-        print_entrys()
-    else:
+        new_entry(new_item, new_location)            # call the new_entry function
+    elif menu_selection == '2':                    # if user wishes to search for an entry
+        search_input = input('Search for: ')         # get search input from user
+        search_entry(search_input)                   # call the search_entry function
+    elif menu_selection == '3':                    # if user wishes to print inventory
+        print_entrys()                               # call the print_entrys function
+    else:                                          # if anything else then loop
         print('Invalid selection - Press enter to continue')
         input()
