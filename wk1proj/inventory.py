@@ -16,7 +16,7 @@ import json
 from blessings import Terminal
 t = Terminal()
 myDict = {}              # initialize dictionary
-filename = 'inventory.txt'            # file name to use to store inventory
+filename = 'inventory.json'            # json file name to use to store inventory
 
 def new_entry(new_item, new_loc):                # function for creating a new entry
     with open(filename, 'r') as myfile:            # open file with implied close (with)
