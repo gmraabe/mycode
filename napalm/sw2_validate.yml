@@ -1,0 +1,18 @@
+---
+ - get_facts:
+     os_version: 4.17.8M-6296892.4178M
+
+ - get_interfaces_ip:
+     Management1:
+       ipv4:
+         172.16.2.20:
+           prefix_length: 24
+         _mode: strict
+ - ping:
+     _name: ping_SW1
+     _kwargs:
+       destination: 172.16.2.10
+       source: 172.16.2.20
+     success:
+       packet_loss: 0
+     _mode: strict
