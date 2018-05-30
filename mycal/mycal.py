@@ -17,3 +17,8 @@ print(lilcal)
 
 print('Here is the calendar for the entire year of:\n')
 print(calendar.calendar(usryear))
+
+if calendar.isleap(usryear):
+    print('This is a leapyear.  Time to replace all HDDs.')
+else:
+    print('This is not a leapyear.  No need to replace all HDDs yet.')
