@@ -25,6 +25,7 @@ def standardize_intfs(parse):
         ## Remove dot1q trunk misconfiguration...
         elif is_switchport_trunk:
             intf.delete_children_matching('port-security')
+            intf.delete_children_matching('negotiate')
 
 ## Parse the config
 parse = CiscoConfParse('ios_audit.conf') # this is our input file
@@ -39,5 +40,6 @@ if not parse.has_line_with(r'^service\stimestamp'):
     parse.prepend_line('service timestamps debug datetime msec localtime show-timezone')
     parse.prepend_line('service timestamps log datetime msec localtime show-timezone')
 
+parse.prepend_line('! -- Micah Raabe -- !')
 ## Write the new configuration
-parse.save_as('ios_audit.conf.new')
+parse.save_as('ios_audit.conf.new2')
