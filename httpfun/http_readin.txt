@@ -1,0 +1,1 @@
+b'<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN"><html>\n<title>Directory listing for /</title>\n<body>\n<h2>Directory listing for /</h2>\n<hr>\n<ul>\n<li><a href="keystone.common.wsgi">keystone.common.wsgi</a>\n</ul>\n<hr>\n</body>\n</html>\n'
