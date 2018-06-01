@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# challenge.py
+# change_config.py
 # Micah Raabe
 
 # Lab 62 - Napalm Challenge
