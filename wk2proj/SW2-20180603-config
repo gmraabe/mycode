@@ -1,0 +1,53 @@
+! Command: show running-config
+! device: SW2 (vEOS, EOS-4.17.8M)
+!
+! boot system flash:/vEOS-lab.swi
+!
+transceiver qsfp default-mode 4x10G
+!
+hostname SW2
+!
+spanning-tree mode mstp
+!
+no aaa root
+!
+username admin role network-admin secret sha512 $6$hVteNWC9Q1ItUTYQ$5vrp9V153gC396rx51d//7ZmzsyJR.7.i90kkFEm31ihyLTHdzURkS6iI1kMef5WDFeODgd4H8aA4ytnEElZT0
+!
+interface Ethernet1
+!
+interface Ethernet2
+!
+interface Ethernet3
+!
+interface Ethernet4
+!
+interface Ethernet5
+!
+interface Ethernet6
+!
+interface Ethernet7
+!
+interface Ethernet8
+!
+interface Ethernet9
+!
+interface Ethernet10
+!
+interface Ethernet11
+!
+interface Ethernet12
+!
+interface Management1
+   mtu 1450
+   ip address 172.16.2.20/24
+!
+ip route 0.0.0.0/0 172.16.2.100
+!
+no ip routing
+!
+management api http-commands
+   protocol http
+   no shutdown
+!
+!
+end
