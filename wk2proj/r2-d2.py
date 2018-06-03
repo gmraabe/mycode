@@ -9,8 +9,8 @@ This is a multifunction python 3 script.
 It uses netmiko and has the ability to:
      - Create an xls document containing router info
      - Use an xls document to bootstrap devices
-     - Restore a switch with a backup config file
      - Create a backup config file
+     - Restore a switch with a backup config file
      - Encrypt a file
      - Decrypt a file
 '''
@@ -263,8 +263,8 @@ while True:
     print('Main Menu:\n')
     print(' 1 - Create an xls document for router config')
     print(' 2 - Use an xls document to bootstrap devices')
-    print(' 3 - Restore a switch with a backup config file')
-    print(' 4 - Create a backup config file')
+    print(' 3 - Create a backup config file')
+    print(' 4 - Restore a switch with a backup config file')
     print(' 5 - Encrypt a file')
     print(' 6 - Decrypt a file')
     print(' q - Quit / Exit')
@@ -276,9 +276,9 @@ while True:
     elif usr_input == '2': ## Option # 2
         bootstrap_start()
     elif usr_input == '3': ## Option # 3
-        restore_config()
-    elif usr_input == '4': ## Option # 4
         create_backup_config()
+    elif usr_input == '4': ## Option # 4
+        restore_config()
     elif usr_input == '5': ## Option # 5
         ## Encrypt
         filename = input('Filename: ')
