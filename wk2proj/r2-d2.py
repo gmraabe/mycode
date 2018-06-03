@@ -40,7 +40,7 @@ def get_ip_data():   # Request data from user
     input_ip = input("\nWhat is the IP address? ")
     input_driver = input("What is the driver associated with this device? ")
     input_user = input("What is the user name? ")
-    input_pw = getpass("What is the password? ")
+    input_pw = getpass.getpass("What is the password? ")
     d = {"IP": input_ip, "driver": input_driver, "username": input_user, "password": input_pw}
     return d
 
@@ -77,10 +77,10 @@ def create_backup_config():
     input_ip = input("\nWhat is the IP address? ")
     input_driver = input("What is the driver associated with this device? ")
     input_user = input("What is the user name? ")
-    input_pw = getpass("What is the password? ")
+    input_pw = getpass.getpass("What is the password? ")
     input_config = input("New Config File Name: ")
 
-    driver = napalm.get_network_driver(input_driver)
+    driver = get_network_driver(input_driver)
     device = driver(hostname=input_ip, username=input_user, password=input_pw)
 
     device.open()
@@ -99,14 +99,14 @@ def restore_config():
     input_ip = input("\nWhat is the IP address? ")
     input_driver = input("What is the driver associated with this device? ")
     input_user = input("What is the user name? ")
-    input_pw = getpass("What is the password? ")
+    input_pw = getpass.getpass("What is the password? ")
     input_config = input("Config File: ")
 
     while not os.path.isfile(input_config):
         print("SORRY ", input_config, " is not a file ")
         input_config = input("What is the full path to the config file you want to use? ")
 
-    driver = napalm.get_network_driver(input_driver)
+    driver = get_network_driver(input_driver)
     device = driver(hostname=input_ip, username=input_user, password=input_pw)
     print('Opening to ', input_ip)
     device.open()
@@ -185,6 +185,10 @@ def bootstrap_start():
     ## Determine where *.xls input is
     file_location = str(input("\nWhere is the file location? "))
 
+    while not os.path.isfile(file_location): # check for valid file
+        print("SORRY ", file_location, " is not a file ")
+        file_location = input("What is the full path to the config file you want to use? ")
+    
     ## Entry is now a local dictionary containing IP(key):driver(value)
     entry = retv_excel(file_location)
 
@@ -247,16 +251,25 @@ while True:
     elif usr_input == '5': ## Option # 5
         ## Encrypt
         filename = input('Filename: ')
-        password = getpass.getpass(' password: ')
-        encrypt_file(filename, password)
-        print('Done')
+        if os.path.isfile(filename) == True: # check for valid file
+            password = getpass.getpass(' password: ')
+            encrypt_file(filename, password)
+            print('Done')
+        else:
+            print("SORRY ", filename, " is not a file ")
+            input('  Press enter to continue: ')
+
     elif usr_input == '6': ## Option # 6
         ## Decrypt
         filename = input('Filename: ')
-        password = getpass.getpass(' Password: ')
-        decrypt_file(filename, password)
-        print('Done')
-    elif usr_input.lower == 'q': ## Option # 6
+        if os.path.isfile(filename) == True: # check for valid file
+            password = getpass.getpass(' Password: ')
+            decrypt_file(filename, password)
+            print('Done')
+        else:
+            print("SORRY ", filename, " is not a file ")
+            input('  Press enter to continue: ')
+    elif usr_input.lower() == 'q': ## Option # 6
         break
     else:
         input('Invalid section! Press Enter to continue...')
