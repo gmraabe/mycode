@@ -72,7 +72,7 @@ def bootstrapper(dev_type, dev_ip, dev_un, dev_pw, config):
     except:
         return False # Something failed during the configuration process - "Return FALSE if fails"
 
-## Create a backup of a running config with date in filename, and log backup in excel file
+## Create a backup of a running config
 def create_backup_config():
     input_ip = input("\nWhat is the IP address? ")
     input_driver = input("What is the driver associated with this device? ")
@@ -188,7 +188,7 @@ def bootstrap_start():
     while not os.path.isfile(file_location): # check for valid file
         print("SORRY ", file_location, " is not a file ")
         file_location = input("What is the full path to the config file you want to use? ")
-    
+
     ## Entry is now a local dictionary containing IP(key):driver(value)
     entry = retv_excel(file_location)
 
