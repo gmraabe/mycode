@@ -40,7 +40,7 @@ def get_ip_data():   # Request data from user
     input_ip = input("\nWhat is the IP address? ")
     input_driver = input("What is the driver associated with this device? ")
     input_user = input("What is the user name? ")
-    input_pw = input("What is the password? ")
+    input_pw = getpass("What is the password? ")
     d = {"IP": input_ip, "driver": input_driver, "username": input_user, "password": input_pw}
     return d
 
