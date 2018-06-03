@@ -49,7 +49,7 @@ def get_ip_data():   # Request data from user for creating excel document
     d = {"IP": input_ip, "driver": input_driver, "username": input_user, "password": input_pw}
     return d
 
-def create_excel_file():
+def create_excel_file(): # Function to create an excel file
     print(t.clear())
     print('\n     R2-D2 ver 1.0\n')
     print('Create xls file:\n')
@@ -65,22 +65,6 @@ def create_excel_file():
     filename = input("\nWhat would you like to name the file? ")  # get filename from user
     pyexcel.save_as(records=mylistdict, dest_file_name=filename)  # create the xls file
     print("The file " + filename + ".xls should be in your local directory")
-
-## Bootstrapper Function
-def bootstrapper(dev_type, dev_ip, dev_un, dev_pw, config):
-    try:
-        config_file = open(config, 'r') # open the file object described by config argument
-        config_lines = config_file.read().splitlines() # create a list of the file lines without \n
-        config_file.close() # close the file object
-        open_connection = ConnectHandler(device_type=dev_type, ip=dev_ip, username=dev_un, password=dev_pw)
-        open_connection.enable() # this sets the connection in enable mode
-        output = open_connection.send_config_set(config_lines) # pass the config to the send_config_set() method
-        print(output) # print the config to the screen # output to the screen
-        open_connection.send_command_expect('write memory') # write the memory (okay if this gets done twice)
-        open_connection.disconnect() # close the open connection
-        return True # Everything worked! - "Return TRUE when complete"
-    except:
-        return False # Something failed during the configuration process - "Return FALSE if fails"
 
 ## Create a backup of a running config
 def create_backup_config():
@@ -157,22 +141,7 @@ def restore_config():
     print('\nDone.')
     input('  Press enter to continue: ')
 
-## Encrypt config file
-def encrypt_file(filename, password):
-    with open(filename, 'rb') as input:
-        plaintext = input.read()
-    with open(filename, 'wb') as output:
-        ciphertext = encrypt(password, plaintext)
-        output.write(ciphertext)
-
-## Decrypt config file
-def decrypt_file(filename, password):
-    with open(filename, 'rb') as input:
-        ciphertext = input.read()
-        plaintext = decrypt(password, ciphertext)
-    with open(filename, 'wb') as output:
-        output.write(plaintext)
-
+### Next six functions are for the bootstrapper ###
 ## retrieve data set from excel
 def retv_excel(par):
     d = {}
@@ -180,6 +149,14 @@ def retv_excel(par):
     for record in records:
         d.update( { record['IP'] : [ record['driver'], record['username'], record['password'] ] } ) # adds a new IP and driver key:value pair to our dictionary
     return d # return the completed dictionary
+
+## Login to router - SSH Check with Netmiko class ConnectHandler
+def login_router(dev_type, dev_ip, dev_un, dev_pw):
+    try:
+        open_connection = ConnectHandler(device_type=dev_type, ip=dev_ip, username=dev_un, password=dev_pw)
+        return True
+    except:
+        return False
 
 ## Ping router - returns True or False
 def ping_router(hostname):
@@ -200,13 +177,21 @@ def interface_check(dev_type, dev_ip, dev_un, dev_pw):
     finally:
         return my_command
 
-## Login to router - SSH Check with Netmiko class ConnectHandler
-def login_router(dev_type, dev_ip, dev_un, dev_pw):
+## Bootstrapper Function
+def bootstrapper(dev_type, dev_ip, dev_un, dev_pw, config):
     try:
+        config_file = open(config, 'r') # open the file object described by config argument
+        config_lines = config_file.read().splitlines() # create a list of the file lines without \n
+        config_file.close() # close the file object
         open_connection = ConnectHandler(device_type=dev_type, ip=dev_ip, username=dev_un, password=dev_pw)
-        return True
+        open_connection.enable() # this sets the connection in enable mode
+        output = open_connection.send_config_set(config_lines) # pass the config to the send_config_set() method
+        print(output) # print the config to the screen # output to the screen
+        open_connection.send_command_expect('write memory') # write the memory (okay if this gets done twice)
+        open_connection.disconnect() # close the open connection
+        return True # Everything worked! - "Return TRUE when complete"
     except:
-        return False
+        return False # Something failed during the configuration process - "Return FALSE if fails"
 
 ## Read hostname, IP address, username, and password from excel file and run initial config/bootstrap
 def bootstrap_start():
@@ -255,6 +240,22 @@ def bootstrap_start():
             print("\nNew configuration applied!")
         else:
             print("\nProblem in applying new configuration!")
+
+## Encrypt config file
+def encrypt_file(filename, password):
+    with open(filename, 'rb') as input:
+        plaintext = input.read()
+    with open(filename, 'wb') as output:
+        ciphertext = encrypt(password, plaintext)
+        output.write(ciphertext)
+
+## Decrypt config file
+def decrypt_file(filename, password):
+    with open(filename, 'rb') as input:
+        ciphertext = input.read()
+        plaintext = decrypt(password, ciphertext)
+    with open(filename, 'wb') as output:
+        output.write(plaintext)
 
 ##### Main Menu #####
 while True:
