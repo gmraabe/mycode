@@ -21,6 +21,7 @@ print(str(x) + '! = ' + str(f))  # print the calculated factorial
 print('The startTime hour is: ' + str(startTime.hour))
 print('The startTime minute is: ' + str(startTime.minute))
 print('The startTime day is: ' + str(startTime.day))
+print('The startTime month is: ' + str(startTime.month))
 print('The startTime year is: ' + str(startTime.year))
 
 ## Figure out how long it took to calculate the factorial

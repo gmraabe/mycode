@@ -32,19 +32,29 @@ from napalm import get_network_driver # import code from NAPALM
 from netmiko import ConnectHandler # import code from Netmiko
 from simplecrypt import encrypt, decrypt # import cryptography functions
 import getpass # import code for password input
+from datetime import datetime # required to use datetime functions
 from blessings import Terminal
 t = Terminal()
 
 ## Create excel file
-def get_ip_data():   # Request data from user
+def get_ip_data():   # Request data from user for creating excel document
     input_ip = input("\nWhat is the IP address? ")
-    input_driver = input("What is the driver associated with this device? ")
-    input_user = input("What is the user name? ")
+    input_driver = input("What is the driver associated with this device? (Default is arista_eos) ")
+    if input_driver == '': # if no input, use the default
+        input_driver = 'arista_eos'
+    input_user = input("What is the user name? (Default is admin) ")
+    if input_user == '': # if no input, use the default
+        input_user = 'admin'
     input_pw = getpass.getpass("What is the password? ")
     d = {"IP": input_ip, "driver": input_driver, "username": input_user, "password": input_pw}
     return d
 
 def create_excel_file():
+    print(t.clear())
+    print('\n     R2-D2 ver 1.0\n')
+    print('Create xls file:\n')
+    print('This will create a xls file to aid in bootstrapping.\n')
+
     mylistdict = []  # this will be our list we turn into a *.xls file
     print("\nHello! We are going to make you a *.xls file")
     while(True):
@@ -74,31 +84,49 @@ def bootstrapper(dev_type, dev_ip, dev_un, dev_pw, config):
 
 ## Create a backup of a running config
 def create_backup_config():
+    print(t.clear())
+    print('\n     R2-D2 ver 1.0\n')
+    print('Backup Config:\n')
+    print('This will create a backup of a devices running configuration.\n')
+
     input_ip = input("\nWhat is the IP address? ")
-    input_driver = input("What is the driver associated with this device? ")
-    input_user = input("What is the user name? ")
+    input_driver = input("What is the driver associated with this device? (Default is eos) ")
+    if input_driver == '': # if no input, use the default
+        input_driver = 'eos'
+    input_user = input("What is the user name? (Default is admin) ")
+    if input_user == '': # if no input, use the default
+        input_user = 'admin'
     input_pw = getpass.getpass("What is the password? ")
-    input_config = input("New Config File Name: ")
 
     driver = get_network_driver(input_driver)
     device = driver(hostname=input_ip, username=input_user, password=input_pw)
 
     device.open()
-    device.get_facts()
-    pp.pprint(device.get_interfaces())
+    # Create the filename using the format [hostname]-[YYYYMMDD]-config
+    config_file_name = str(device.get_facts()['hostname'] + '-' + datetime.now().strftime('%Y%m%d') + '-config')
+    # pp.pprint(device.get_interfaces()) # uncomment to print the current config to screen
     config = device.get_config()
     running_config = config['running']
-    config_file = open(input_config, 'w')
-    config_file.write(running_config)
-    config_file.close()
-    print('\nConfig File ' + input_config + ' successfully saved.')
+    config_file = open(config_file_name, 'w') # open the new config file
+    config_file.write(running_config) # write the running config to the new file
+    config_file.close() # close the file
+    print('\nConfig File ' + config_file_name + ' successfully saved.')
     input('\n  Press enter to continue: ')
 
 ## Restore a switch with a backup config file
 def restore_config():
+    print(t.clear())
+    print('\n     R2-D2 ver 1.0\n')
+    print('Restore using config file:\n')
+    print('This will restore a running configuration from a backuped config file.\n')
+
     input_ip = input("\nWhat is the IP address? ")
-    input_driver = input("What is the driver associated with this device? ")
-    input_user = input("What is the user name? ")
+    input_driver = input("What is the driver associated with this device? (Default is eos) ")
+    if input_driver == '': # if no input, use the default
+        input_driver = 'eos'
+    input_user = input("What is the user name? (Default is admin) ")
+    if input_user == '': # if no input, use the default
+        input_user = 'admin'
     input_pw = getpass.getpass("What is the password? ")
     input_config = input("Config File: ")
 
@@ -182,8 +210,11 @@ def login_router(dev_type, dev_ip, dev_un, dev_pw):
 
 ## Read hostname, IP address, username, and password from excel file and run initial config/bootstrap
 def bootstrap_start():
+    print(t.clear())
+    print('\n     R2-D2 ver 1.0\n')
+    print('Bootstrapping:\n')
     ## Determine where *.xls input is
-    file_location = str(input("\nWhere is the file location? "))
+    file_location = str(input("\nFile name of the xls config file: "))
 
     while not os.path.isfile(file_location): # check for valid file
         print("SORRY ", file_location, " is not a file ")
