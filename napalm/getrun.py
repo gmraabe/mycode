@@ -13,7 +13,6 @@ if len(sys.argv) != 2:
    print("example: python3 getrun.py  a.b.c.d")
    sys.exit()
 ip = sys.argv[1]
-from napalm import get_network_driver # import code from NAPALM
 driver = get_network_driver('eos') # get hte driver for Arista devices
 device = driver(ip, 'admin', 'alta3') # apply the switch credentials
 device.open() # start the connection
