@@ -43,7 +43,7 @@ keyring==7.3
 keystoneauth1==3.7.0
 language-selector==0.1
 lml==0.0.1
-lxml==3.5.0
+lxml==4.6.2
 MarkupSafe==1.0
 monotonic==0.6
 msgpack==0.5.6
