@@ -14,7 +14,7 @@ cloud-init==18.2
 cmd2==0.6.8
 command-not-found==0.3
 configobj==5.0.6
-cryptography==2.2.2
+cryptography==3.2
 debtcollector==1.19.0
 decorator==4.3.0
 defer==1.0.6
