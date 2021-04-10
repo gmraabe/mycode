@@ -92,7 +92,7 @@ python-novaclient==3.3.1
 python-openstackclient==2.3.1
 python-systemd==231
 pytz==2018.4
-pyxdg==0.25
+pyxdg==0.26
 PyYAML==5.4
 repoze.lru==0.7
 requests==2.20.0
