@@ -65,7 +65,7 @@ ovs==2.9.0
 packaging==17.1
 paramiko==2.4.1
 pbr==4.0.3
-Pillow==3.3.2
+Pillow==8.1.1
 positional==1.0.1
 prettytable==0.7.2
 pyasn1==0.4.2
