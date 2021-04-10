@@ -34,7 +34,7 @@ greenlet==0.4.13
 html5lib==0.999
 idna==2.6
 iso8601==0.1.12
-Jinja2==2.10
+Jinja2==2.11.3
 jmespath==0.9.3
 jsonpatch==1.23
 jsonpointer==2.0
