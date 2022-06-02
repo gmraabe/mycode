@@ -31,7 +31,7 @@ enum-compat==0.0.2
 eventlet==0.20.0
 funcsigs==0.4
 greenlet==0.4.13
-html5lib==0.999
+html5lib==0.99999999
 idna==2.6
 iso8601==0.1.12
 Jinja2==2.11.3
